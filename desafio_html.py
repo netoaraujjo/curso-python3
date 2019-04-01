@@ -2,17 +2,9 @@
 
 
 def tag(tag, *args, **kwargs):
-    html = f'<{tag}'
-
-    if kwargs:
-        html += ''.join(f' {k}="{v}"' for k, v in kwargs.items())
-
-    html += '>'
-
-    for item in args:
-        html += item
-
-    html += f'</{tag}>'
+    attrs = ''.join(f' {k}="{v}"' for k, v in kwargs.items())
+    inner = ''.join(args)
+    html = f'<{tag}{attrs}>{inner}</{tag}>'
     return html.replace('css', 'class')
 
 
